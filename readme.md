@@ -58,3 +58,4 @@
 - Traditionally, browser requests data from server and performs full page reload for each route
 - But in client side routing, each route is handled in browser rather than server, making the website faster
 - Till 50:34 in the video, only new concept learned from the video is in SearchBar.jsx
+- Test
