@@ -77,10 +77,10 @@ const Footer = () => {
             <a href="https://www.facebook.com" className="hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
               <TbBrandMeta className="h-5 w-5"/>
             </a>
-            <a href="https://www.facebook.com" className="hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com" className="hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
               <IoLogoInstagram className="h-5 w-5"/>
             </a>
-            <a href="https://www.facebook.com" className="hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.x.com" className="hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
               <RiTwitterXLine className="h-4 w-4"/>
             </a>
           </div>
