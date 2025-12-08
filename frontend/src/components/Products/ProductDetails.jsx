@@ -11,17 +11,24 @@ const selectedProduct = {
     colors: ["Red", "Black"],
     images: [
         {
-            url: "https://picsum.photos/500/500?random=1",
+            url: "https://picsum.photos/500/650?random=1",
             altText: "Stylish jacket image",
         },
         {
-            url: "https://picsum.photos/500/500?random=2",
+            url: "https://picsum.photos/500/650?random=2",
             altText: "Stylish jacket image",
         },
     ],
 };
 
 export const ProductDetails = () => {
+    const [mainImage, setMainImage] = React.useState("");
+    React.useEffect(() => {
+        if (selectedProduct?.images?.length > 0) {
+            setMainImage(selectedProduct.images[0].url);
+        }
+    }, [selectedProduct]);
+
   return (
     <div className='p-6'>
         <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
@@ -29,19 +36,19 @@ export const ProductDetails = () => {
                 {/* Left thumbnails */}
                 <div className="hidden md:flex flex-col space-y-4 mr-6">
                     {selectedProduct.images.map((image, index) => (
-                        <img src={image.url} key={index} alt={image.altText || `Thumbnail ${index + 1}`} className='w-20 h-20 object-cover rounded-lg cursor-pointer border'/>
+                        <img src={image.url} key={index} alt={image.altText || `Thumbnail ${index + 1}`} className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${mainImage === image.url ? "border-black" : "border-gray-300"}`} onClick={() => setMainImage(image.url)}/>
                     ))}
                 </div>
                 {/* Main image */}
                 <div className="md:w-1/2">
                     <div className="mb-4">
-                        <img src={selectedProduct.images[0]?.url} alt="Main product" className='w-full h-auto object-cover rounded-lg'/>
+                        <img src={mainImage} alt="Main product" className='w-full h-auto object-cover rounded-lg'/>
                     </div>
                 </div>
                 {/* Mobile thumbnail */}
                 <div className="md:hidden flex overflow-x-scroll space-x-4 mb-4">
                     {selectedProduct.images.map((image, index) => (
-                        <img src={image.url} key={index} alt={image.altText || `Thumbnail ${index + 1}`} className='w-20 h-20 object-cover rounded-lg cursor-pointer border'/>
+                        <img src={image.url} key={index} alt={image.altText || `Thumbnail ${index + 1}`} className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${mainImage === image.url ? "border-black" : "border-gray-300"}`} onClick={() => setMainImage(image.url)}/>
                     ))}
                 </div>
                 {/* Right side */}
@@ -56,6 +63,53 @@ export const ProductDetails = () => {
                         ${selectedProduct.price}
                     </p>
                     <p className="text-gray-600 mb-4">{selectedProduct.description}</p>
+                    {/* Color options */}
+                    <div className='mb-4'>
+                        <p className="text-gray-700">Color:</p>
+                        <div className="flex gap-2 mt-2">
+                            {selectedProduct.colors.map((color) => (
+                                <button key={color} className='w-8 h-8 rounded-full border border-gray-300' style={{backgroundColor: color.toLowerCase(), filter: "brightness(0.5)"}}></button> 
+                            ))}
+                        </div>
+                    </div>
+                    {/* Size options */}
+                    <div className="mb-4">
+                        <p className="text-gray-700">Size:</p>
+                        <div className="flex gap-2 mt-2">
+                            {selectedProduct.sizes.map((size) => (
+                                <button key={size} className='px-4 py-2 rounded border border-gray-300'>{size}</button>
+                            ))}
+                        </div>
+                    </div>
+                    {/* Quantity options */}
+                    <div className="mb-6">
+                        <p className="text-gray-700">Quantity:</p>
+                        <div className="flex items-center space-x-4 mt-2">
+                            <button className="px-2 py-1 bg-gray-200 rounded text-lg">-</button>
+                            <span className='text-lg'>1</span>
+                            <button className="px-2 py-1 bg-gray-200 rounded text-lg">+</button>
+                        </div>
+                    </div>
+                    {/* Add to cart button */}
+                    <button className="bg-black text-white py-2 px-6 rounded w-full mb-4">
+                        Add to Cart
+                    </button>
+                    {/* Characteristics table */}
+                    <div className="mt-10 text-gray-700">
+                        <h3 className='text-xl font-bold mb-4'>Characteristics:</h3>
+                        <table className='w-full text-left text-sm text-gray-600'>
+                            <tbody>
+                                <tr>
+                                    <td className='py-1'>Brand</td>
+                                    <td className='py-1'>{selectedProduct.brand}</td>
+                                </tr>
+                                <tr>
+                                    <td className='py-1'>Material</td>
+                                    <td className='py-1'>{selectedProduct.material}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
