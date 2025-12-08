@@ -57,4 +57,5 @@
 - Every page will have its own unique URL like /home, /products, /cart
 - Traditionally, browser requests data from server and performs full page reload for each route
 - But in client side routing, each route is handled in browser rather than server, making the website faster
-- Till 50:34 in the video, only new concept learned from the video is in SearchBar.jsx
+- Till 50:34 in the video, only new concept learned from the video is in SearchBar.jsx (search bar feature)
+- This comment is made at timestamp 2:15:00 into the tutorial. Do not even bother to learn or spend time learning component structure and stuff. Learn the logic behind everything so it can be modofied and implemented in another project. Main learning points were the cart slide menu feature, mobile menu slide feature, search bar feature, sliding images in New Arrivals section till now
