@@ -59,3 +59,4 @@
 - But in client side routing, each route is handled in browser rather than server, making the website faster
 - Till 50:34 in the video, only new concept learned from the video is in SearchBar.jsx (search bar feature)
 - This comment is made at timestamp 2:15:00 into the tutorial. Do not even bother learning folder/directory/file structure and stuff. Learn the logic behind everything so it can be modofied and implemented in another project. Main learning points were the cart slide menu feature, mobile menu slide feature, search bar feature, sliding images in New Arrivals section till now
+- Sonner library is used for toast notifications. To install it, do `npm install sonner` in terminal in the frontend folder
