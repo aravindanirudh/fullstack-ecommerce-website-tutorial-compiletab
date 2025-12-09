@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { toast } from 'sonner';
 
 const selectedProduct = {
     name: "Stylish Jacket",
@@ -42,6 +43,24 @@ export const ProductDetails = () => {
         }
     }
 
+    const handleAddToCart = () => {
+        if(!selectedSize || !selectedColor) {
+            toast.error("Please select a size and a color before adding to cart!", {
+                duration: 1000,
+            });
+            return;
+        }
+
+        setIsButtonDisabled(true);
+
+        setTimeout(() => {
+            toast.success("Product added to cart!", {
+                duration: 1000,
+            });
+            setIsButtonDisabled(false);
+        }, 500);
+    }
+
   return (
     <div className='p-6'>
         <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
@@ -81,7 +100,7 @@ export const ProductDetails = () => {
                         <p className="text-gray-700">Color:</p>
                         <div className="flex gap-2 mt-2">
                             {selectedProduct.colors.map((color) => (
-                                <button key={color} onClick={() => setSelectedColor(color)} className={`w-8 h-8 rounded-full border ${selectedColor === color ? "border-4 border-black" : "border-gray-300"}`} style={{backgroundColor: color.toLowerCase(), filter: "brightness(0.5)"}}></button> 
+                                <button key={color} onClick={() => setSelectedColor(color)} className={`w-8 h-8 rounded-full border ${selectedColor === color ? "border-4 border-black" : "border-gray-300"}`} style={{backgroundColor: color.toLowerCase(), filter: "brightness(0.5)"}}></button>
                             ))}
                         </div>
                     </div>
@@ -104,8 +123,8 @@ export const ProductDetails = () => {
                         </div>
                     </div>
                     {/* Add to cart button */}
-                    <button className="bg-black text-white py-2 px-6 rounded w-full mb-4">
-                        Add to Cart
+                    <button disabled={isButtonDisabled} onClick={handleAddToCart} className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${isButtonDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-900"}`}>
+                        {isButtonDisabled ? "Adding..." : "Add to Cart"}
                     </button>
                     {/* Characteristics table */}
                     <div className="mt-10 text-gray-700">
