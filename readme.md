@@ -1,4 +1,4 @@
-### Full-stack MERN E-Commerce Website
+### Full-stack MERN E-Commerce Clothing Website
 - Source: https://youtu.be/hpgh2BTtac8
 - Date of starting: 03-12-2025 (Wednesday)
 - Starting this tutorial with the intention to document and learn important intermediate website feature implementation such as cart system using Redux, authentication etc..
