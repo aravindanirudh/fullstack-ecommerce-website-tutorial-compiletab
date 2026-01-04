@@ -24,8 +24,10 @@ const CollectionPage = () => {
     // Add event listener to close sidebar when clicking outside by listening to document clicks
     document.addEventListener("mousedown", handleClickOutside);
     // Cleanup the event listener on component unmount
-    document.removeEventListener("mousedown", handleClickOutside);
-  });
+    return() => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
