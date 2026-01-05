@@ -8,7 +8,7 @@ const RazorpayButton = ({ amount, onSuccess, onError }) => {
       description: "Test Transaction (Sandbox)",
       handler: function (response) {
         console.log("Payment Success:", response);
-        onSuccess(response); // 🔥 redirect happens here
+        onSuccess(response); // redirect happens here
       },
       modal: {
         ondismiss: function () {
