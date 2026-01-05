@@ -1,5 +1,6 @@
 import React, { use } from 'react'
 import { useNavigate } from 'react-router-dom';
+import RazorpayButton from './RazorpayButton';
 
 const cart = {
     products: [
@@ -37,6 +38,11 @@ const Checkout = () => {
     const handleCreateCheckout = (e) => {
         e.preventDefault();
         setCheckoutId(123);
+    }
+
+    const handlePaymentSuccess = (details) => {
+        console.log("Payment successful!", details);
+        navigate("/order-confirmation");
     }
 
   return (
@@ -88,8 +94,9 @@ const Checkout = () => {
                         <button type='submit' className='w-full bg-black text-white py-3 rounded'>Continue to Payment</button>
                     ) : (
                         <div>
-                            <h3 className='text-lg mb-4'>Pay with Paypal</h3>
-                            {/* Paypal button component */}
+                            <h3 className='text-lg mb-4'>Pay with Razorpay</h3>
+                            {/* Razorpay button component */}
+                            <RazorpayButton amount={100} onSuccess={handlePaymentSuccess} onError={(err) => alert("Payment failed! Try again!")}/>
                         </div>
                     )}
                 </div>
