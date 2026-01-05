@@ -61,3 +61,5 @@
 - This comment is made at timestamp 2:15:00 into the tutorial. Do not even bother learning folder/directory/file structure and stuff. Learn the logic behind everything so it can be modofied and implemented in another project. Main learning points were the cart slide menu feature, mobile menu slide feature, search bar feature, sliding images in New Arrivals section till now
 - Sonner library is used for toast notifications. To install it, do `npm install sonner` in terminal in the frontend folder
 - After 04:55:00 is the section to implement PayPal. Here, use PayPal Developer (Apps & Credentials > Create App > Merchant App) to create app for using in the MERN app. Also, download react-paypal-js package using npm as well. More info at https://www.npmjs.com/package/@paypal/react-paypal-js
+- But for some reason, in India, due to restrictions, PayPal sandbox is showing error for may users and so, it is unusable
+- For this reason, Razorpay might have to be used
