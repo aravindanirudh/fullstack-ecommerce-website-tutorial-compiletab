@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const MyOrdersPage = () => {
   const [orders, setOrders] = React.useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Simulate fetching orders from an API
@@ -38,6 +40,10 @@ const MyOrdersPage = () => {
     }, 1000);
   }, []);
 
+  const handleRowClick = (orderId) => {
+    navigate(``);
+  }
+
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
       <h2 className="text-xl sm:text-2xl font-bold mb-6">My Orders</h2>
@@ -60,6 +66,8 @@ const MyOrdersPage = () => {
                 <tr
                   key={order._id}
                   className="border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+                  onClick={() => handleRowClick(order._id)}
+
                 >
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
                     <img
@@ -72,8 +80,8 @@ const MyOrdersPage = () => {
                     #{order._id}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
-                    {new Date(order.createdAt).toLocaleDateString}{" "}
-                    {new Date(order.createdAt).toLocaleTimeString}
+                    {new Date(order.createdAt).toLocaleDateString("en-IN")}{" "}
+                    {new Date(order.createdAt).toLocaleTimeString("en-IN")}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
                     {order.shippingAddress ? `${order.shippingAddress.city}, ${order.shippingAddress.country}`: "N/A"}
