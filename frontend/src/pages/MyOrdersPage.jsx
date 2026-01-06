@@ -41,7 +41,7 @@ const MyOrdersPage = () => {
   }, []);
 
   const handleRowClick = (orderId) => {
-    navigate(``);
+    navigate(`/order/${orderId}`);
   }
 
   return (
