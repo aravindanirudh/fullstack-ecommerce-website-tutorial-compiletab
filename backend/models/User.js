@@ -31,13 +31,12 @@ const userSchema = new mongoose.Schema({
 // Password hash middleware that will hash the password before saving it in our database
 // pre is a mongoose middleware that runs before the 'save' event
 // next is a callback to indicate that the middleware is done and to proceed to the next middleware or save operation
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
     if (!this.isModified("password")) {
-        return next(); // If password is not modified, proceed to the next middleware or save operation
+        return; // If password is not modified, proceed to the next middleware or save operation
     }
     const salt = await bcrypt.genSalt(10); // Generate a salt with 10 rounds of processing
     this.password = await bcrypt.hash(this.password, salt); // Hash the password using the generated salt
-    next(); // Proceed to the next middleware or save operation
 });
 
 // Match user entered password to hashed password in database
