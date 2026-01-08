@@ -4,7 +4,7 @@ const RazorpayButton = ({ amount, onSuccess, onError }) => {
   const handlePayment = async () => {
     try {
       const { data: order } = await axios.post(
-        "http://localhost:5000/api/payment/create-order",
+        "http://localhost:9000/api/payment/create-order",
         { amount }
       );
 
