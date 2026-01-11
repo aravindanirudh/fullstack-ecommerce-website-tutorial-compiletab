@@ -222,4 +222,62 @@ router.get("/", async (req, res) => {
     }
 });
 
+// @route GET /api/products/best-seller
+// @desc Get best-selling products based on highest rated products
+// @access Public
+router.get("/best-seller", async (req, res) => {
+    try {
+        const bestSeller = await Product.findOne().sort({ rating: -1 });
+        if (bestSeller) {
+            res.json(bestSeller);
+        } else {
+            res.status(404).json({ message: "No best seller found" });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server Error!" });
+    }
+});
+
+// @route GET /api/products/:id
+// @desc Get a single product by ID
+// @access Public
+router.get("/:id", async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).json({ message: "Product not found" });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server Error!" });
+    }
+});
+
+// @route GET /api/products/similar/:id
+// @desc Get similar products based on current product's gender and category
+// @access Public
+router.get("/similar/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const product = await Product.findById(id);
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        const similarProducts = await Product.find({
+            _id: { $ne: id }, // Exclude the current product
+            gender: product.gender,
+            category: product.category,
+        }).limit(4); // Limit to 4 similar products
+
+        res.json(similarProducts);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server Error!" });
+    }
+});
+
 export default router;
