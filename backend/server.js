@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/ProductRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 dotenv.config(); // Load environment variables from .env file
 
 const app = express(); // Create an Express application
@@ -24,6 +25,7 @@ app.use("/api/payment", paymentRoutes);
 // API routes
 app.use("/api/users", userRoutes); // Use userRoutes for handling user-related requests
 app.use("/api/products", productRoutes); // Use productRoutes for handling product-related requests
+app.use("/api/cart", cartRoutes); // Use cartRoutes for handling cart-related requests
 
 // Start the server and listen on the specified port
 app.listen(process.env.PORT || 9000, () => {
