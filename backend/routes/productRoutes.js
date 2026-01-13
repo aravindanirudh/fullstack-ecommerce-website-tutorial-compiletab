@@ -1,9 +1,14 @@
-import express from "express";
-import Product from "../models/Product.js";
-import { protect, admin } from "../middleware/authMiddleware.js";
+import express from "express"; // Express framework
+import Product from "../models/Product.js"; // Mongoose model (schema)
+import { protect, admin } from "../middleware/authMiddleware.js"; // admin = are you allowed to do admin actions? protect = who are you?
 
 const router = express.Router();
 
+
+
+// protect (JWT → req.user)
+// admin (req.user.role === "admin"?)
+// create product
 // @route POST /api/products
 // @desc Create new product in the database
 // @access Private/Admin
@@ -51,7 +56,7 @@ router.post("/", protect, admin, async (req, res) => {
       dimensions,
       weight,
       sku,
-      user: req.user._id, // Reference to the admin user who created it
+      user: req.user._id, // Reference to the admin user who created it. user: req.user._id is attached by 'protect' middleware. _id is MongoDB's object ID. This creates a reference to the admin who created the product
     });
 
     const createdProduct = await product.save();
@@ -93,7 +98,7 @@ router.put("/:id", protect, admin, async (req, res) => {
         const product = await Product.findById(req.params.id);
 
         if (product) {
-            // Update product fields
+            // Update product fields. If something exists, keep that value. Else, update it
             product.name = name || product.name;
             product.description = description || product.description;
             product.price = price || product.price;
@@ -134,6 +139,7 @@ router.delete("/:id", protect, admin, async (req, res) => {
         // Find the product by ID
         const product = await Product.findById(req.params.id);
 
+        // If the product exists
         if (product) {
             // Remove the product from the database
             await product.deleteOne();
@@ -191,7 +197,7 @@ router.get("/", async (req, res) => {
         }
 
         if(search) {
-            query.$or = [{ name: { $regex: search, $options: "i" } }, { description: { $regex: search, $options: "i" } }];
+            query.$or = [{ name: { $regex: search, $options: "i" } }, { description: { $regex: search, $options: "i" } }]; // 'i' means case sensitive
         }
 
         // Sort logic

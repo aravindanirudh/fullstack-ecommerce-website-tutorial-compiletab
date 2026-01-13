@@ -17,6 +17,7 @@
 - For payments, we use Paypal Payment Gateway
 - First, frontend then backend is built in the tutorial
 - Responsive website
+- Comments are given in the source code (in retardmaxx mode - meaning, comment exists for even a very simple obvious thing) as notes/explanations
 
 ### Notes
 - Reason for using Redux - it stores global data in one central place (the “store”) so any component can access it easily (global state management). It solves prop drilling issue and makes a large website easier to build and maintain. In MERN, Redux helps share state like user info, cart, etc. across components. Redux Toolkit framework is an improved version of old Redux. Redux Thunk is a middleware that allows Redux to run async functions, mainly for API calls

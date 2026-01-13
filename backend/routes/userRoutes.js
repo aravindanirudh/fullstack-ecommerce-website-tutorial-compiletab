@@ -1,17 +1,23 @@
-import express from "express";
-import User from "../models/User.js";
-import jwt from "jsonwebtoken";
-import { protect } from "../middleware/authMiddleware.js";
+import express from "express"; // Import express to create a router
+import User from "../models/User.js"; // Import User model created in models folder
+import jwt from "jsonwebtoken"; // Used to create JWT and perform secure user authentication
+import { protect } from "../middleware/authMiddleware.js"; // Imports the custom middleware that was created earlier. Used to protect private routes. It checks whether token exists, is token valid and attach user to req.user
 
-const router = express.Router();
+const router = express.Router(); // Create express router
+
+// Every route is mounted in server.js as app.use("/api/users", userRoutes); So, every route is relative to /api/users
+// userRoutes.js does 3 jobs:
+// 1. Register a user → create account + issue JWT
+// 2. Login a user → verify credentials + issue JWT
+// 3. Profile → return user info only if JWT is valid
 
 // User registration route
 // @route @POST /api/users/register
 // @desc Register a new user
 // @access Public
 // We will not specify /api/users here because it is specified in server.js where we use this router
-router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+router.post("/register", async (req, res) => { // Creates a new user and immediately logs them in (by issuing JWT)
+  const { name, email, password } = req.body; // Data sent from frontend
 
   try {
     // Registration logic here
