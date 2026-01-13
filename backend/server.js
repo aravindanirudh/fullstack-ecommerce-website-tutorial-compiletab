@@ -11,6 +11,7 @@ import cartRoutes from "./routes/cartRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import subscribeRoute from "./routes/subscribeRoute.js";
 dotenv.config(); // Load environment variables from .env file. Makes the .env variables available via process.env.VARIABLE_NAME
 
 const app = express(); // Create an Express application and 'app' is the server object. Everything (routes, middleware) attaches to this.
@@ -31,6 +32,7 @@ app.use("/api/cart", cartRoutes); // Use cartRoutes for handling cart-related re
 app.use("/api/checkout", checkoutRoutes); // Use checkoutRoutes for handling checkout-related requests
 app.use("/api/orders", orderRoutes); // Use orderRoutes for handling order-related requests
 app.use("/api/upload", uploadRoutes); // Use uploadRoutes for handling image upload-related requests
+app.use("/api", subscribeRoute); // Use subscribeRoutes for handling subscriber-related requests
 
 // Start the server and listens on the specified port
 app.listen(process.env.PORT || 9000, () => {
