@@ -10,6 +10,7 @@ import productRoutes from "./routes/ProductRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 dotenv.config(); // Load environment variables from .env file. Makes the .env variables available via process.env.VARIABLE_NAME
 
 const app = express(); // Create an Express application and 'app' is the server object. Everything (routes, middleware) attaches to this.
@@ -19,7 +20,7 @@ connectDB(); // Connect to MongoDB database
 
 // Define a simple route for the root URL. This is the homepage of the API (not frontend)
 app.get("/", (req, res) => {
-  res.send("Welcome to Rabbit API!");
+  res.send("Welcome to Rabbit API! This is the homepage of backend API of Rabbit MERN (full-stack) Ecommerce Website tutorial from compiletab YouTube channel! ");
 });
 
 // API routes
@@ -29,6 +30,7 @@ app.use("/api/products", productRoutes); // Use productRoutes for handling produ
 app.use("/api/cart", cartRoutes); // Use cartRoutes for handling cart-related requests
 app.use("/api/checkout", checkoutRoutes); // Use checkoutRoutes for handling checkout-related requests
 app.use("/api/orders", orderRoutes); // Use orderRoutes for handling order-related requests
+app.use("/api/upload", uploadRoutes); // Use uploadRoutes for handling image upload-related requests
 
 // Start the server and listens on the specified port
 app.listen(process.env.PORT || 9000, () => {
