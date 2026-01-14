@@ -51,7 +51,7 @@ const similarProducts = [
 ];
 
 const ProductDetails = () => {
-    const [mainImage, setMainImage] = React.useState("");
+    const [mainImage, setMainImage] = React.useState(selectedProduct?.images?.[0]?.url || null);
     const [selectedSize, setSelectedSize] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
     const [quantity, setQuantity] = React.useState(1);
@@ -102,7 +102,7 @@ const ProductDetails = () => {
                 {/* Main image */}
                 <div className="md:w-1/2">
                     <div className="mb-4">
-                        <img src={mainImage} alt="Main product" className='w-full h-auto object-cover rounded-lg'/>
+                        {mainImage && <img src={mainImage} alt="Main product" className='w-full h-auto object-cover rounded-lg'/>}
                     </div>
                 </div>
                 {/* Mobile thumbnail */}

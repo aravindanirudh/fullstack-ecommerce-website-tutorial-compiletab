@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, rejectWithValue } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Helper function to get cart from localStorage
