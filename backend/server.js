@@ -13,6 +13,9 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import subscribeRoute from "./routes/subscribeRoute.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import productAdminRoutes from "./routes/productAdminRoutes.js";
+import adminOrderRoutes from "./routes/adminOrderRoutes.js";
+
 dotenv.config(); // Load environment variables from .env file. Makes the .env variables available via process.env.VARIABLE_NAME
 
 const app = express(); // Create an Express application and 'app' is the server object. Everything (routes, middleware) attaches to this.
@@ -34,7 +37,11 @@ app.use("/api/checkout", checkoutRoutes); // Use checkoutRoutes for handling che
 app.use("/api/orders", orderRoutes); // Use orderRoutes for handling order-related requests
 app.use("/api/upload", uploadRoutes); // Use uploadRoutes for handling image upload-related requests
 app.use("/api", subscribeRoute); // Use subscribeRoutes for handling subscriber-related requests
-app.use("/api/admin/users", adminRoutes);
+
+// Admin routes
+app.use("/api/admin/users", adminRoutes); // Use adminRoutes for handling admin user management-related requests
+app.use("/api/admin/products", productAdminRoutes); // Use productAdminRoutes for handling admin product management-related requests
+app.use("/api/admin/orders", adminOrderRoutes); // Use adminOrderRoutes for handling admin order management-related requests
 
 // Start the server and listens on the specified port
 app.listen(process.env.PORT || 9000, () => {
