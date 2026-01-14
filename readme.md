@@ -65,3 +65,4 @@
 - But for some reason, in India, due to restrictions, PayPal sandbox is showing error for may users and so, it is unusable
 - For this reason, Razorpay might have to be used
 - Using multer, cloudinary for image API (check package.json). Multer is used for handling file uploads. Cloudinary package helps us communicate with Cloudinary service. Streamifier is used to convert chunks of data into streams (for streaming data to APIs like Cloudinary)
+- Redux is used for simplification of state management and Redux Thunk is a middleware that helps us in handling asynchronous requests to the server
