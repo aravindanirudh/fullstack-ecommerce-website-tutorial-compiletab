@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const NewArrivals = () => {
     const scrollRef = React.useRef(null);
@@ -9,97 +10,19 @@ const NewArrivals = () => {
     const [scrollLeft, setScrollLeft] = React.useState(false);
     const [canScrollLeft, setCanScrollLeft] = React.useState(false);
     const [canScrollRight, setCanScrollRight] = React.useState(true);
+    const [newArrivals, setNewArrivals] = React.useState([]);
 
-    const newArrivalsData = [
-        {
-            _id: "1",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=1",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "2",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=2",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "3",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=3",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "4",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=4",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "5",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=5",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "6",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=6",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "7",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=7",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-        {
-            _id: "8",
-            name: "Stylish Jacket",
-            price: 120,
-            images: [
-                {
-                    url: "https://picsum.photos/500/500/?random=8",
-                    altText: "Stylish jacket image",
-                },
-            ],
-        },
-    ];
+    useEffect(() => {
+        const fetchNewArrivals = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`);
+                setNewArrivals(response.data);
+            } catch (error) {
+                console.error('Error fetching new arrivals:', error);
+            }
+        };
+        fetchNewArrivals();
+    }, []);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -142,7 +65,7 @@ const NewArrivals = () => {
                 updateScrollButtons();
                 return () => container.removeEventListener("scroll", updateScrollButtons);
             };
-        }, []);
+        }, [newArrivals]);
 
   return (
     <section className='py-16 px-4 lg:px-0'>
@@ -162,7 +85,7 @@ const NewArrivals = () => {
 
         {/* Scrollable content */}
         <div ref={scrollRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUpOrLeave} onMouseLeave={handleMouseUpOrLeave} className={`container mx-auto overflow-x-scroll flex space-x-6 relative ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} `}>
-            {newArrivalsData.map((product) => (
+            {newArrivals.map((product) => (
                 <div key={product._id} className='min-w-full sm:min-w-[50%] lg:min-w-[30%] relative'>
                     <img src={product.images[0]?.url}
                     alt={product.images[0]?.altText || product.name} 

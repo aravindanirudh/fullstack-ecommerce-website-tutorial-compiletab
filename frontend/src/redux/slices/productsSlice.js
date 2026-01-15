@@ -4,7 +4,7 @@ import axios from "axios";
 // Async thunk to fetch products based on filters
 export const fetchProductsByFilters = createAsyncThunk(
   "products/fetchByFilters",
-  async (
+  async ({
     collection,
     size,
     color,
@@ -17,7 +17,7 @@ export const fetchProductsByFilters = createAsyncThunk(
     material,
     brand,
     limit
-  ) => {
+  }) => {
     const query = new URLSearchParams();
     if (collection) query.append("collection", collection);
     if (size) query.append("size", size);
@@ -174,7 +174,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchSimilarProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload;
+        state.similarProducts = action.payload;
       })
       .addCase(fetchSimilarProducts.rejected, (state, action) => {
         state.loading = false;

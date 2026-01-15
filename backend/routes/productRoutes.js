@@ -190,6 +190,10 @@ router.get("/", async (req, res) => {
             query.gender = gender;
         }
 
+        if (category) {
+            query.category = category;
+        }
+
         if(minPrice || maxPrice) {
             query.price = {};
             if(minPrice) query.price.$gte = Number(minPrice);
