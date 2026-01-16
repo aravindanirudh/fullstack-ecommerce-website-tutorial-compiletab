@@ -12,7 +12,7 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
 
   const handleCheckout = () => {
     toggleCartDrawer();
-    if (!userId && cart.length === 0) {
+    if (!userId && cart.products.length > 0) {
       navigate("/login?redirect=checkout");
     } else {
       navigate("/checkout");
