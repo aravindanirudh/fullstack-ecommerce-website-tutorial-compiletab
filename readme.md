@@ -63,6 +63,6 @@
 - Sonner library is used for toast notifications. To install it, do `npm install sonner` in terminal in the frontend folder
 - After 04:55:00 is the section to implement PayPal. Here, use PayPal Developer (Apps & Credentials > Create App > Merchant App) to create app for using in the MERN app. Also, download react-paypal-js package using npm as well. More info at https://www.npmjs.com/package/@paypal/react-paypal-js
 - But for some reason, in India, due to restrictions, PayPal sandbox is showing error for may users and so, it is unusable
-- For this reason, Razorpay might have to be used
+- For this reason, Razorpay might have to be used. Use UPI method and UPI ID success@razorpay for testing purposes
 - Using multer, cloudinary for image API (check package.json). Multer is used for handling file uploads. Cloudinary package helps us communicate with Cloudinary service. Streamifier is used to convert chunks of data into streams (for streaming data to APIs like Cloudinary)
 - Redux is used for simplification of state management and Redux Thunk is a middleware that helps us in handling asynchronous requests to the server
