@@ -235,7 +235,8 @@ router.post("/merge", protect, async (req, res) => {
         // Guest cart already merged, return user cart
         return res.status(200).json(userCart);
       }
-      return res.status(404).json({ message: "Guest cart not found" });
+      // No guest cart or user cart found - return empty cart (this is ok, user can shop)
+      return res.status(200).json({ products: [], totalPrice: 0 });
     }
   } catch (error) {
     console.error("Error merging carts:", error);

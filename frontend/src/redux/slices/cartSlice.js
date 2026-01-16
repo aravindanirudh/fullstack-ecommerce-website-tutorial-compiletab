@@ -96,7 +96,7 @@ const cartSlice = createSlice({
         error: null,
     },
     reducers: {
-        clearCartState: (state) => {
+        clearCart: (state) => {
             state.cart = { products: [] };
             localStorage.removeItem("cart");
         },
@@ -169,7 +169,10 @@ const cartSlice = createSlice({
           })
           .addCase(mergeCart.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload?.message || "Failed to merge cart";
+            // Don't treat merge failure as critical error - user can proceed with empty cart
+            state.error = null;
+            // Optionally log the error for debugging but don't prevent navigation
+            console.warn("Cart merge warning:", action.payload?.message);
           });
     },
 });

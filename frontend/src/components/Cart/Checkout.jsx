@@ -25,7 +25,7 @@ const Checkout = () => {
   // Ensure cart is loaded before proceeding
   useEffect(() => {
     if (!cart || !cart.products || cart.products.length === 0) {
-      navigate("/homepage");
+      navigate("/");
     }
   }, [cart, navigate]);
 
