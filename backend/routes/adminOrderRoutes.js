@@ -9,7 +9,7 @@ const router = express.Router();
 // @access Private/admin
 router.get('/', protect, admin, async (req, res) => {
     try {
-        const orders = await Order.find({});
+        const orders = await Order.find({}).populate('user');
         res.json(orders);
     } catch (error) {
         console.error(error);
