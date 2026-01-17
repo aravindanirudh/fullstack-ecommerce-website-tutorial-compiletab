@@ -7,6 +7,7 @@
 - **Project Start Date:** 03-12-2025 (Wednesday)
 - **Project End Date:** 18-01-2026 (Sunday)
 - **Status:** Production-Ready MERN Application
+- **Live Demo:** https://rabbit-compiletab-mern-ecommerce-website.vercel.app/
 
 ---
 
