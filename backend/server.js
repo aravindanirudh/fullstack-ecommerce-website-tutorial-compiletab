@@ -6,7 +6,7 @@ import connectDB from "./config/db.js"; // Custom function that connects to Mong
 // Import all routes as separate imports. They will be attached with app.use() later
 import paymentRoutes from "./routes/payment.js";
 import userRoutes from "./routes/userRoutes.js";
-import productRoutes from "./routes/ProductRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
