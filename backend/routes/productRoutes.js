@@ -4,8 +4,6 @@ import { protect, admin } from "../middleware/authMiddleware.js"; // admin = are
 
 const router = express.Router();
 
-
-
 // protect (JWT → req.user)
 // admin (req.user.role === "admin"?)
 // create product

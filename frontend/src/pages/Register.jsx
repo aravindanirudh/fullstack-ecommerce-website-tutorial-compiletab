@@ -13,7 +13,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { user, guestId } = useSelector((state) => state.auth);
+    const { user, guestId, loading } = useSelector((state) => state.auth);
     const { cart } = useSelector((state) => state.cart);
 
     // Get redirect parameter and check if it is checkout or something else
@@ -58,7 +58,7 @@ const Register = () => {
                     <label className='block text-sm font-semibold mb-2'>Password</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className='w-full p-2 border border-gray-200 rounded-md' placeholder='Enter your password'/>
                 </div>
-                <button type='submit' className='w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition'>Sign Up</button>
+                <button type='submit' className='w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition'>{loading ? "Loading" : "Sign Up"}</button>
                 <p className="mt-6 text-center text-sm">
                     Don't have an account?{" "}
                     <Link to={`/login?redirect=${encodeURIComponent(redirect)}`} className="text-blue-500">Login</Link>

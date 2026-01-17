@@ -9,7 +9,7 @@ const router = express.Router();
 // @access Private/admin
 router.get('/', protect, admin, async (req, res) => {
     try {
-        const orders = await Order.find({}).populate('user');
+        const orders = await Order.find({}).populate('user', 'name email');
         res.json(orders);
     } catch (error) {
         console.error(error);
@@ -22,13 +22,14 @@ router.get('/', protect, admin, async (req, res) => {
 // @access Private/admin
 router.put('/:id', protect, admin, async (req, res) => {
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(req.params.id).populate('user', 'name email');
         if (order) {
             order.status = req.body.status || order.status;
-            order.isDelivered = req.body.status === "Delivered" ? true : order.isDelivered;
-            order.deliveredAt = req.body.status === "Delivered" ? Date.now() : order.deliveredAt;
+            order.isDelivered = req.body.status === "delivered" ? true : order.isDelivered;
+            order.deliveredAt = req.body.status === "delivered" ? Date.now() : order.deliveredAt;
             const updatedOrder = await order.save();
-            res.json(updatedOrder);
+            const populatedOrder = await Order.findById(updatedOrder._id).populate('user');
+            res.json(populatedOrder);
         } else {
             res.status(404).json({ message: 'Order not found' });
         }
