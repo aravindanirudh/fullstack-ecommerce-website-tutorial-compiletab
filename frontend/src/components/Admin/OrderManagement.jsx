@@ -1,17 +1,6 @@
 import React from "react";
 
 const OrderManagement = () => {
-  const orders = [
-    {
-      _id: 121312,
-      user: {
-        name: "John Doe",
-      },
-      totalPrice: 110,
-      status: "Processing",
-    },
-  ];
-
   const handleStatusChange = (orderId, status) => {
     console.log(`Order ${orderId} status changed to ${status}`);
   };
