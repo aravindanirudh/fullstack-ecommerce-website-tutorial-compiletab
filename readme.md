@@ -3,10 +3,6 @@
 ## Project Overview
 **Rabbit** is a full-stack e-commerce platform for clothing retail built with the MERN stack (MongoDB, Express.js, React, Node.js). This project demonstrates professional e-commerce implementation including user authentication, product management, shopping cart, secure payments, and an admin dashboard.
 
-- **Source Tutorial:** https://youtu.be/hpgh2BTtac8
-- **Project Start Date:** 03-12-2025 (Wednesday)
-- **Live Demo:** https://rabbit-compiletab-mern-ecommerce-website.vercel.app/
-
 ---
 
 ## Table of Contents
